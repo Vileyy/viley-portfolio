@@ -55,9 +55,9 @@ export const Contact: React.FC = () => {
           </h3>
         </motion.div>
 
-        <div className="grid md:grid-cols-5 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
           {/* Info Card Column */}
-          <div className="md:col-span-2 flex flex-col gap-6">
+          <div className="lg:col-span-5 flex flex-col gap-6">
             <div className="flex flex-col gap-3">
               <h4 className="text-3xl font-extrabold text-text-primary">Contact Info</h4>
               <p className="text-text-secondary leading-relaxed text-base">
@@ -122,7 +122,7 @@ export const Contact: React.FC = () => {
           </div>
 
           {/* Contact Form Column wrapped in a modern glass panel */}
-          <div className="md:col-span-3">
+          <div className="lg:col-span-7">
             <motion.div
               initial={{ opacity: 0, scale: 0.98 }}
               whileInView={{ opacity: 1, scale: 1 }}
