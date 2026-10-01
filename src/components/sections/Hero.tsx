@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Github, Linkedin, Mail, ArrowDown, FileDown } from 'lucide-react';
+import { Github, Linkedin, Mail, ArrowDown, Eye, Download } from 'lucide-react';
 import avatarImg from '../../assets/avt_viley.jpg';
 import { FaReact } from 'react-icons/fa';
 import { SiTypescript, SiNextdotjs } from 'react-icons/si';
@@ -64,26 +64,41 @@ export const Hero: React.FC = () => {
             Frontend Engineer with production experience building enterprise web applications in React and TypeScript for German clients. Proven track record in delivering real-time scheduling workflows (Pusher), robust RBAC, and automated testing architectures (4,900+ Bun tests, 70+ Playwright E2E suites).
           </p>
 
-          <div className="flex flex-wrap gap-3.5 mt-2">
+          <div className="flex flex-wrap items-center gap-3 mt-2">
             <button
               onClick={scrollToProjects}
-              className="px-6 py-3 rounded-xl bg-primary text-white font-semibold shadow-lg shadow-blue-500/25 hover:bg-blue-600 transition-all duration-300 hover:-translate-y-1 hover:shadow-blue-500/35 cursor-pointer"
+              className="px-6 py-3 rounded-xl bg-primary text-white font-semibold shadow-lg shadow-blue-500/25 hover:bg-blue-600 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-blue-500/35 cursor-pointer"
             >
               View Projects
             </button>
-            <a
-              href="/Doan_Quoc_Hieu_CV.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              download="Doan_Quoc_Hieu_CV.pdf"
-              className="px-6 py-3 rounded-xl bg-slate-900 text-white font-semibold hover:bg-slate-800 transition-all duration-300 hover:-translate-y-1 flex items-center justify-center gap-2 shadow-md cursor-pointer"
-            >
-              <FileDown className="w-4 h-4 text-blue-400" />
-              Download CV
-            </a>
+
+            {/* Split CV Button: View & Download */}
+            <div className="inline-flex items-center rounded-xl bg-slate-900 shadow-md border border-slate-800 p-1 transition-all duration-300 hover:-translate-y-0.5">
+              <a
+                href="/Doan_Quoc_Hieu_CV.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-white text-xs sm:text-sm font-semibold hover:bg-slate-800 transition-colors cursor-pointer"
+                title="View CV in browser"
+              >
+                <Eye className="w-4 h-4 text-blue-400" />
+                <span>View CV</span>
+              </a>
+              <span className="w-[1px] h-5 bg-slate-700/80 mx-1" />
+              <a
+                href="/Doan_Quoc_Hieu_CV.pdf"
+                download="Doan_Quoc_Hieu_CV_Frontend_Engineer.pdf"
+                className="inline-flex items-center gap-1 px-3 py-2 rounded-lg text-slate-300 text-xs font-semibold hover:text-white hover:bg-slate-800 transition-colors cursor-pointer"
+                title="Download PDF file"
+              >
+                <Download className="w-3.5 h-3.5 text-slate-300" />
+                <span>Download</span>
+              </a>
+            </div>
+
             <a
               href="#contact"
-              className="px-6 py-3 rounded-xl border border-border-custom bg-white/80 backdrop-blur-md text-text-primary font-semibold hover:bg-blue-50/50 hover:border-primary/50 transition-all duration-300 hover:-translate-y-1 flex items-center justify-center shadow-xs"
+              className="px-5 py-3 rounded-xl border border-border-custom bg-white/80 backdrop-blur-md text-text-primary font-semibold hover:bg-blue-50/50 hover:border-primary/50 transition-all duration-300 hover:-translate-y-0.5 flex items-center justify-center shadow-xs text-xs sm:text-sm"
             >
               Contact Me
             </a>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Eye } from 'lucide-react';
 
 const NAV_ITEMS = [
   { id: 'home', label: 'Home' },
@@ -74,7 +74,7 @@ export const Header: React.FC = () => {
         </a>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden md:flex items-center gap-7">
           {NAV_ITEMS.map((item) => (
             <a
               key={item.id}
@@ -92,6 +92,16 @@ export const Header: React.FC = () => {
               )}
             </a>
           ))}
+
+          <a
+            href="/Doan_Quoc_Hieu_CV.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-slate-900 text-white text-xs font-semibold hover:bg-slate-800 transition-colors shadow-xs"
+          >
+            <Eye className="w-3.5 h-3.5 text-blue-400" />
+            <span>View CV</span>
+          </a>
         </nav>
 
         {/* Mobile Menu Button */}
@@ -119,6 +129,16 @@ export const Header: React.FC = () => {
               {item.label}
             </a>
           ))}
+
+          <a
+            href="/Doan_Quoc_Hieu_CV.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-slate-900 text-white text-sm font-semibold mt-2"
+          >
+            <Eye className="w-4 h-4 text-blue-400" />
+            <span>View CV (PDF)</span>
+          </a>
         </nav>
       )}
     </header>
