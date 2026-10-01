@@ -57,11 +57,11 @@ export const Hero: React.FC = () => {
           </h1>
 
           <p className="text-xl md:text-2xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
-            Junior Front-End Engineer
+            Frontend Software Engineer
           </p>
 
           <p className="text-text-secondary text-base md:text-lg leading-relaxed max-w-xl">
-            Passionate about building responsive, pixel-perfect, and modern web & mobile user interfaces. Focused on delivering premium, high-performance user experiences.
+            Passionate about building scalable, high-performance web applications and enterprise platforms. Experienced in delivering production systems for European clients (O.R.B.I.T, Galvanek Atlas).
           </p>
 
           <div className="flex flex-wrap gap-4 mt-2">
