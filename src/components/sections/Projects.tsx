@@ -18,7 +18,10 @@ import {
   ShieldCheck, 
   TestTube,
   ArrowRight,
-  CheckCircle2
+  CheckCircle2,
+  Maximize2,
+  Camera,
+  Cpu
 } from 'lucide-react';
 import type { Project, ProjectCategory } from '../../types';
 
@@ -40,6 +43,8 @@ import { TbBrandReactNative } from 'react-icons/tb';
 
 import haloraCosmeticImg from '../../assets/halora_cosmetic.png';
 import haloraCosmeticWebImg from '../../assets/halora_cosmetic_web.png';
+import orbitImg from '../../assets/orbit_galvanek.png';
+import atlasImg from '../../assets/atlas_galvanek.png';
 import { ProjectMockup } from './ProjectMockup';
 import { ProjectDetailModal } from './ProjectDetailModal';
 
@@ -73,32 +78,41 @@ const getTechIcon = (tech: string) => {
 export const Projects: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<ProjectCategory>('all');
   const [activeModalProject, setActiveModalProject] = useState<Project | null>(null);
+  const [activeViews, setActiveViews] = useState<Record<string, 'screenshot' | 'interactive'>>({
+    orbit: 'screenshot',
+    atlas: 'screenshot'
+  });
+
+  const toggleView = (projectId: string, view: 'screenshot' | 'interactive') => {
+    setActiveViews(prev => ({ ...prev, [projectId]: view }));
+  };
 
   const projects: Project[] = [
     {
       id: 'orbit',
-      title: 'O.R.B.I.T',
-      subtitle: 'Sales Schedule Simulation & Field Operations Platform',
+      title: 'O.R.B.I.T (Sales OS · Galvanek)',
+      subtitle: 'Call Center V2 & Schedule Simulation Platform',
       category: 'client',
       clientName: 'Galvanek GmbH (Germany)',
       companyName: 'AutoMate Solutions',
-      role: 'Frontend Developer (Owner of Schedule Simulation Module)',
+      role: 'Frontend Developer (Schedule Simulation & Call Center V2)',
       period: '2025 - Present',
       description: 'A large-scale B2B sales management and schedule simulation platform engineered for the German market. Features multi-salesperson calendar coordination, automated travel route optimization, real-time sync, and iterative simulation algorithms.',
-      longDescription: 'Independently owned and developed the Schedule Simulation module, enabling dispatchers to simulate, optimize, and analyze customer visit itineraries with zero overlap and minimal travel overhead.',
+      longDescription: 'Owned and developed the Schedule Simulation engine and Call Center V2 calendar, enabling sales dispatchers to model visit itineraries with zero overlap, automated travel segments, and minimal travel overhead.',
       highlights: [
-        'Engineered iterative simulation workflows with snapshot caching, comparison views, and on-demand state loading.',
-        'Built high-precision week calendar (Europe/Berlin timezone) managing customer appointments, travel buffers, and return-home constraints.',
-        'Integrated Leaflet map polylines for real-time route visualization synchronized with calendar state.',
-        'Developed derived KPI dashboards using Recharts (average travel per lead, visits per week, efficiency ratio).',
-        'Integrated real-time synchronization via Pusher WebSockets and built comprehensive E2E test suites with Playwright & Bun test.'
+        'Call Center V2 Multi-Resource Calendar: Built high-precision week calendar (Europe/Berlin CET) rendering customer visit cards ([V] Konzeptanalyse, Erstgespräch), travel segments (Heimfahrt, Fahrt zu Kunde), and regional destination tags (Plauen, Chemnitz).',
+        'Schedule Simulation Workflows: Engineered iterative simulation workflows with snapshot caching, comparison views, and on-demand state loading.',
+        'Geospatial & Route Polylines: Integrated Leaflet map polylines for real-time route visualization synchronized with calendar state.',
+        'Derived Analytics & KPI Dashboards: Developed KPI dashboards using Recharts (average travel per lead, visits per week, efficiency ratio).',
+        'Real-time Sync & Testing: Integrated Pusher WebSockets for instant multi-user state synchronization and built comprehensive E2E test suites with Playwright & Bun test.'
       ],
       metrics: [
+        { label: 'Conflict Gate', value: '100% Collision-free' },
         { label: 'Travel Overhead', value: '-18.4% Avg' },
-        { label: 'Weekly Capacity', value: '+25% Visits' },
-        { label: 'Conflict Gate', value: '100% Real-time Parity' }
+        { label: 'Data Sync', value: 'Live Pusher WebSocket' }
       ],
       technologies: ['React 18', 'TypeScript', 'Vite', 'Recharts', 'Leaflet', 'Pusher / WebSockets', 'FullCalendar', 'TanStack Query', 'Playwright', 'Bun test'],
+      imageUrl: orbitImg,
       mockupType: 'orbit',
       confidential: true,
       featured: true
@@ -106,27 +120,28 @@ export const Projects: React.FC = () => {
     {
       id: 'atlas',
       title: 'Galvanek Atlas (Montago Web)',
-      subtitle: 'Enterprise Construction Project Management & Subcontractor ERP',
+      subtitle: 'Enterprise Construction Management & Subcontractor ERP',
       category: 'client',
       clientName: 'Galvanek-Bau (Germany)',
       companyName: 'AutoMate Solutions',
       role: 'Frontend Developer',
       period: '2025 - Present',
-      description: 'A comprehensive enterprise ERP platform custom-built for large-scale German construction operations. Supports multi-tier stakeholders (Admins, Project Managers, Site Owners, Subcontractors) across the complete construction lifecycle.',
-      longDescription: 'Engineered core workflows including subcontractor assignment, site management, dynamic inspection reports, and architectural blueprint markup.',
+      description: 'A comprehensive enterprise ERP platform custom-built for large-scale German construction operations. Supports multi-tier stakeholders (Platform Admin, Project Managers, Site Owners, Subcontractors) across the complete construction lifecycle.',
+      longDescription: 'Engineered core operational workflows including subcontractor vendor assignment, site management, dynamic inspection reports, and architectural blueprint markup.',
       highlights: [
-        'Built multi-role RBAC architecture (Admin, PM, Owner, Subcontractor) with secure JWT auto-refresh token guards.',
-        'Implemented interactive Kanban boards (@dnd-kit) and Gantt timelines (dhtmlx) for milestone and trade tracking.',
-        'Developed architectural blueprint defect annotation tool using Konva canvas for on-site protocol inspections.',
-        'Integrated geospatial maps with Germany 5-digit postcode (PLZ) database for subcontractor radius assignment.',
-        'Built complex multi-step report builders, digital signature verification, and real-time status push via Pusher.'
+        'Operational Business Suite: Built and maintained core modules including Customer Management, Project Management, Protocol Dashboard, Subcontractors (Vendors), and Team Management.',
+        'Interactive Scheduling: Implemented drag-and-drop Kanban boards (@dnd-kit) and interactive Gantt charts (dhtmlx) for milestone and trade tracking.',
+        'Architectural Blueprint Markup: Developed defect inspection annotation tool using Konva canvas for on-site protocol inspections directly on architectural plans.',
+        'Geospatial Vendor Matching: Integrated Leaflet maps with Germany 5-digit postcode (PLZ) database for subcontractor radius assignment.',
+        'System Settings & Live Audit Feed: Built User Management with RBAC, Service Catalog, and real-time operational Activity Logs tracking all vendor actions.'
       ],
       metrics: [
         { label: 'User Roles', value: '4 Tiers (RBAC)' },
-        { label: 'Coverage Matching', value: 'Germany PLZ Synced' },
-        { label: 'Inspection Protocol', value: '100% Paperless' }
+        { label: 'Core Modules', value: '10+ Integrated' },
+        { label: 'Inspection Protocol', value: '100% Digital / Konva' }
       ],
       technologies: ['React 18', 'TypeScript', 'Ant Design 5', 'Leaflet', 'Konva (Canvas)', 'DHTMLX Gantt', '@dnd-kit', 'Pusher WebSockets', 'JWT / RBAC'],
+      imageUrl: atlasImg,
       mockupType: 'atlas',
       confidential: true,
       featured: true
@@ -254,6 +269,7 @@ export const Projects: React.FC = () => {
             const isEven = index % 2 === 0;
             const isClientProject = project.category === 'client';
             const isMobileApp = project.technologies.includes('React Native (Expo)');
+            const currentView = activeViews[project.id] || 'screenshot';
 
             return (
               <motion.div
@@ -268,12 +284,79 @@ export const Projects: React.FC = () => {
                     transition={{ duration: 0.3 }}
                     className={`relative overflow-hidden rounded-[2rem] border transition-all duration-300 ${
                       isClientProject
-                        ? 'border-slate-800 bg-slate-950 p-2 sm:p-4 shadow-xl shadow-slate-900/10'
+                        ? 'border-slate-800 bg-slate-950 shadow-2xl shadow-slate-950/20'
                         : 'border-border-custom bg-gradient-to-tr from-slate-50 to-blue-50/30 p-8 md:p-12 shadow-sm group-hover:shadow-md'
                     }`}
                   >
-                    {isClientProject && (project.mockupType === 'orbit' || project.mockupType === 'atlas') ? (
-                      <ProjectMockup type={project.mockupType} />
+                    {isClientProject ? (
+                      <div className="flex flex-col w-full">
+                        {/* macOS Browser Chrome Topbar with View Toggle */}
+                        <div className="bg-slate-900 px-4 py-2.5 border-b border-slate-800 flex items-center justify-between">
+                          <div className="flex items-center gap-2">
+                            <div className="flex gap-1.5">
+                              <div className="w-2.5 h-2.5 rounded-full bg-rose-500/80" />
+                              <div className="w-2.5 h-2.5 rounded-full bg-amber-500/80" />
+                              <div className="w-2.5 h-2.5 rounded-full bg-emerald-500/80" />
+                            </div>
+                            <span className="text-slate-400 font-mono text-[11px] ml-2 hidden sm:inline">
+                              {project.id === 'orbit' ? 'https://orbit.galvanek.de/call-center' : 'https://atlas.galvanek-bau.de/dashboard'}
+                            </span>
+                          </div>
+
+                          {/* Switcher: Live Screenshot vs Interactive UI */}
+                          <div className="flex items-center gap-1 bg-slate-950 p-1 rounded-lg border border-slate-800">
+                            <button
+                              onClick={() => toggleView(project.id, 'screenshot')}
+                              className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-[11px] font-semibold transition-all cursor-pointer ${
+                                currentView === 'screenshot'
+                                  ? 'bg-blue-600 text-white shadow'
+                                  : 'text-slate-400 hover:text-white'
+                              }`}
+                            >
+                              <Camera className="w-3 h-3" />
+                              <span>Live UI</span>
+                            </button>
+                            <button
+                              onClick={() => toggleView(project.id, 'interactive')}
+                              className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-[11px] font-semibold transition-all cursor-pointer ${
+                                currentView === 'interactive'
+                                  ? 'bg-blue-600 text-white shadow'
+                                  : 'text-slate-400 hover:text-white'
+                              }`}
+                            >
+                              <Cpu className="w-3 h-3" />
+                              <span>Simulation</span>
+                            </button>
+                          </div>
+                        </div>
+
+                        {/* View Content */}
+                        <div className="relative">
+                          {currentView === 'screenshot' && project.imageUrl ? (
+                            <div 
+                              onClick={() => setActiveModalProject(project)}
+                              className="relative cursor-pointer group/screenshot overflow-hidden bg-slate-950 flex items-center justify-center p-2"
+                            >
+                              <img
+                                src={project.imageUrl}
+                                alt={`${project.title} Production Interface`}
+                                className="w-full h-auto object-cover rounded-xl transition-transform duration-500 group-hover/screenshot:scale-[1.01]"
+                              />
+                              <div className="absolute inset-0 bg-slate-950/20 opacity-0 group-hover/screenshot:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                <span className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-900/90 text-white text-xs font-semibold backdrop-blur-md shadow-lg border border-white/20">
+                                  <Maximize2 className="w-3.5 h-3.5" /> Click to Enlarge & View Specs
+                                </span>
+                              </div>
+                            </div>
+                          ) : (
+                            <div className="p-2 sm:p-3">
+                              {project.mockupType === 'orbit' || project.mockupType === 'atlas' ? (
+                                <ProjectMockup type={project.mockupType} />
+                              ) : null}
+                            </div>
+                          )}
+                        </div>
+                      </div>
                     ) : (
                       <img
                         src={project.imageUrl}

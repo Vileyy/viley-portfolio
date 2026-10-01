@@ -90,6 +90,28 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({ project,
 
           {/* Body Content */}
           <div className="p-6 md:p-8 overflow-y-auto space-y-8 flex-1">
+            {/* Real Production Screenshot */}
+            {project.imageUrl && (
+              <div className="flex flex-col gap-2">
+                <div className="flex items-center justify-between text-xs text-text-muted font-medium">
+                  <span className="flex items-center gap-1.5 text-text-primary font-semibold">
+                    <Building2 className="w-3.5 h-3.5 text-primary" /> Live Client System Interface
+                  </span>
+                  <span className="font-mono text-[11px] text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200 flex items-center gap-1">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                    Verified Production Deployment
+                  </span>
+                </div>
+                <div className="rounded-2xl overflow-hidden border border-slate-200 shadow-md bg-slate-900 group">
+                  <img
+                    src={project.imageUrl}
+                    alt={project.title}
+                    className="w-full h-auto object-contain max-h-[440px] mx-auto transition-transform duration-500 group-hover:scale-[1.01]"
+                  />
+                </div>
+              </div>
+            )}
+
             {/* Overview */}
             <div>
               <h4 className="text-sm font-bold uppercase tracking-wider text-primary mb-3 flex items-center gap-2">
