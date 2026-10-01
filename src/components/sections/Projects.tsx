@@ -19,9 +19,7 @@ import {
   TestTube,
   ArrowRight,
   CheckCircle2,
-  Maximize2,
-  Camera,
-  Cpu
+  Maximize2
 } from 'lucide-react';
 import type { Project, ProjectCategory } from '../../types';
 
@@ -45,7 +43,7 @@ import haloraCosmeticImg from '../../assets/halora_cosmetic.png';
 import haloraCosmeticWebImg from '../../assets/halora_cosmetic_web.png';
 import orbitImg from '../../assets/orbit_galvanek.png';
 import atlasImg from '../../assets/atlas_galvanek.png';
-import { ProjectMockup } from './ProjectMockup';
+import automateLogo from '../../assets/automate_solutions_logo.png';
 import { ProjectDetailModal } from './ProjectDetailModal';
 
 const getTechIcon = (tech: string) => {
@@ -78,14 +76,6 @@ const getTechIcon = (tech: string) => {
 export const Projects: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<ProjectCategory>('all');
   const [activeModalProject, setActiveModalProject] = useState<Project | null>(null);
-  const [activeViews, setActiveViews] = useState<Record<string, 'screenshot' | 'interactive'>>({
-    orbit: 'screenshot',
-    atlas: 'screenshot'
-  });
-
-  const toggleView = (projectId: string, view: 'screenshot' | 'interactive') => {
-    setActiveViews(prev => ({ ...prev, [projectId]: view }));
-  };
 
   const projects: Project[] = [
     {
@@ -97,8 +87,8 @@ export const Projects: React.FC = () => {
       companyName: 'AutoMate Solutions',
       role: 'Frontend Developer (Schedule Simulation & Call Center V2)',
       period: '2025 - Present',
-      description: 'A large-scale B2B sales management and schedule simulation platform engineered for the German market. Features multi-salesperson calendar coordination, automated travel route optimization, real-time sync, and iterative simulation algorithms.',
-      longDescription: 'Owned and developed the Schedule Simulation engine and Call Center V2 calendar, enabling sales dispatchers to model visit itineraries with zero overlap, automated travel segments, and minimal travel overhead.',
+      description: 'A large-scale B2B sales management and dispatch platform engineered for the German market. Features multi-salesperson calendar coordination, automated travel route calculation, real-time sync, and iterative simulation algorithms.',
+      longDescription: 'Owned and developed the Schedule Simulation engine and Call Center V2 calendar, enabling dispatchers to model visit itineraries with zero overlap, automated travel segments, and minimal travel overhead.',
       highlights: [
         'Call Center V2 Multi-Resource Calendar: Built high-precision week calendar (Europe/Berlin CET) rendering customer visit cards ([V] Konzeptanalyse, Erstgespräch), travel segments (Heimfahrt, Fahrt zu Kunde), and regional destination tags (Plauen, Chemnitz).',
         'Schedule Simulation Workflows: Engineered iterative simulation workflows with snapshot caching, comparison views, and on-demand state loading.',
@@ -109,18 +99,17 @@ export const Projects: React.FC = () => {
       metrics: [
         { label: 'Conflict Gate', value: '100% Collision-free' },
         { label: 'Travel Overhead', value: '-18.4% Avg' },
-        { label: 'Data Sync', value: 'Live Pusher WebSocket' }
+        { label: 'Data Sync', value: 'Live Pusher WS' }
       ],
       technologies: ['React 18', 'TypeScript', 'Vite', 'Recharts', 'Leaflet', 'Pusher / WebSockets', 'FullCalendar', 'TanStack Query', 'Playwright', 'Bun test'],
       imageUrl: orbitImg,
-      mockupType: 'orbit',
       confidential: true,
       featured: true
     },
     {
       id: 'atlas',
-      title: 'Galvanek Atlas (Montago Web)',
-      subtitle: 'Enterprise Construction Management & Subcontractor ERP',
+      title: 'Galvanek Atlas (Montago Web ERP)',
+      subtitle: 'Enterprise Construction Management & Subcontractor Platform',
       category: 'client',
       clientName: 'Galvanek-Bau (Germany)',
       companyName: 'AutoMate Solutions',
@@ -142,7 +131,6 @@ export const Projects: React.FC = () => {
       ],
       technologies: ['React 18', 'TypeScript', 'Ant Design 5', 'Leaflet', 'Konva (Canvas)', 'DHTMLX Gantt', '@dnd-kit', 'Pusher WebSockets', 'JWT / RBAC'],
       imageUrl: atlasImg,
-      mockupType: 'atlas',
       confidential: true,
       featured: true
     },
@@ -156,8 +144,7 @@ export const Projects: React.FC = () => {
       technologies: ['React Native (Expo)', 'Firebase DB', 'Firebase Auth', 'Cloudinary', 'Stripe / COD', 'MVVM Architecture'],
       imageUrl: haloraCosmeticImg,
       liveUrl: 'https://youtu.be/kbDpjS7Xgls',
-      githubUrl: 'https://github.com/Vileyy/user-halora-app',
-      mockupType: 'image'
+      githubUrl: 'https://github.com/Vileyy/user-halora-app'
     },
     {
       id: 'halora-web',
@@ -169,8 +156,7 @@ export const Projects: React.FC = () => {
       technologies: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Vercel'],
       imageUrl: haloraCosmeticWebImg,
       liveUrl: 'https://halora-cosmetic.vercel.app/',
-      githubUrl: 'https://github.com/Vileyy/halora-user-web',
-      mockupType: 'image'
+      githubUrl: 'https://github.com/Vileyy/halora-user-web'
     }
   ];
 
@@ -190,15 +176,15 @@ export const Projects: React.FC = () => {
   };
 
   const cardVariants: Variants = {
-    hidden: { opacity: 0, y: 30 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } }
+    hidden: { opacity: 0, y: 25 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } }
   };
 
   return (
-    <section id="projects" className="py-24 bg-card border-t border-border-custom relative overflow-hidden">
-      {/* Background decoration */}
+    <section id="projects" className="py-20 bg-card border-t border-border-custom relative overflow-hidden">
+      {/* Background subtle decoration */}
       <div className="absolute inset-0 pointer-events-none opacity-40">
-        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full bg-blue-50/40 blur-3xl" />
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full bg-blue-50/40 blur-3xl" />
       </div>
 
       <div className="container mx-auto px-6 max-w-6xl relative z-10">
@@ -206,28 +192,28 @@ export const Projects: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          transition={{ duration: 0.5 }}
+          className="text-center mb-10"
         >
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200/60 text-primary text-xs font-bold uppercase tracking-wider mb-3">
-            <Sparkles className="w-3.5 h-3.5" /> Portfolios & Real-World Work
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 border border-blue-200/60 text-primary text-xs font-bold uppercase tracking-wider mb-2">
+            <Sparkles className="w-3.5 h-3.5" /> Featured Work
           </div>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-text-primary">
-            Featured Projects & Client Systems
+          <h2 className="text-3xl md:text-4xl font-extrabold text-text-primary">
+            Projects & Client Systems
           </h2>
-          <p className="text-text-secondary text-base max-w-2xl mx-auto mt-3">
-            A blend of enterprise-grade commercial platforms built for European clients and personal software products.
+          <p className="text-text-secondary text-sm mt-1 max-w-xl mx-auto">
+            Real-world enterprise systems engineered for European clients alongside personal software products.
           </p>
         </motion.div>
 
         {/* Category Filters */}
-        <div className="flex justify-center mb-16">
-          <div className="inline-flex p-1.5 rounded-2xl bg-white border border-border-custom shadow-sm gap-1">
+        <div className="flex justify-center mb-12">
+          <div className="inline-flex p-1 rounded-2xl bg-white border border-border-custom shadow-xs gap-1">
             <button
               onClick={() => setSelectedCategory('all')}
               className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer ${
                 selectedCategory === 'all'
-                  ? 'bg-primary text-white shadow-sm'
+                  ? 'bg-primary text-white shadow-xs'
                   : 'text-text-secondary hover:text-text-primary hover:bg-slate-50'
               }`}
             >
@@ -237,18 +223,18 @@ export const Projects: React.FC = () => {
               onClick={() => setSelectedCategory('client')}
               className={`inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer ${
                 selectedCategory === 'client'
-                  ? 'bg-blue-600 text-white shadow-sm'
+                  ? 'bg-blue-600 text-white shadow-xs'
                   : 'text-blue-600 hover:bg-blue-50/60'
               }`}
             >
-              <Building2 className="w-4 h-4" />
+              <Building2 className="w-3.5 h-3.5" />
               Client & Enterprise ({projects.filter((p) => p.category === 'client').length})
             </button>
             <button
               onClick={() => setSelectedCategory('personal')}
               className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer ${
                 selectedCategory === 'personal'
-                  ? 'bg-primary text-white shadow-sm'
+                  ? 'bg-primary text-white shadow-xs'
                   : 'text-text-secondary hover:text-text-primary hover:bg-slate-50'
               }`}
             >
@@ -263,164 +249,124 @@ export const Projects: React.FC = () => {
           variants={containerVariants}
           initial="hidden"
           animate="show"
-          className="flex flex-col gap-24 lg:gap-32"
+          className="flex flex-col gap-16 lg:gap-20"
         >
           {filteredProjects.map((project, index) => {
             const isEven = index % 2 === 0;
             const isClientProject = project.category === 'client';
             const isMobileApp = project.technologies.includes('React Native (Expo)');
-            const currentView = activeViews[project.id] || 'screenshot';
 
             return (
               <motion.div
                 key={project.id}
                 variants={cardVariants}
-                className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center group"
+                className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center group bg-white p-6 sm:p-8 rounded-3xl border border-border-custom shadow-xs hover:border-slate-300 transition-colors"
               >
-                {/* Visual Showcase Box (Mockup / Image) */}
+                {/* Visual Showcase Box (Real Screenshot in macOS Window Frame) */}
                 <div className={`lg:col-span-7 ${isEven ? 'lg:order-1' : 'lg:order-2'}`}>
-                  <motion.div
-                    whileHover={{ y: -5 }}
-                    transition={{ duration: 0.3 }}
-                    className={`relative overflow-hidden rounded-[2rem] border transition-all duration-300 ${
-                      isClientProject
-                        ? 'border-slate-800 bg-slate-950 shadow-2xl shadow-slate-950/20'
-                        : 'border-border-custom bg-gradient-to-tr from-slate-50 to-blue-50/30 p-8 md:p-12 shadow-sm group-hover:shadow-md'
-                    }`}
-                  >
-                    {isClientProject ? (
-                      <div className="flex flex-col w-full">
-                        {/* macOS Browser Chrome Topbar with View Toggle */}
-                        <div className="bg-slate-900 px-4 py-2.5 border-b border-slate-800 flex items-center justify-between">
-                          <div className="flex items-center gap-2">
-                            <div className="flex gap-1.5">
-                              <div className="w-2.5 h-2.5 rounded-full bg-rose-500/80" />
-                              <div className="w-2.5 h-2.5 rounded-full bg-amber-500/80" />
-                              <div className="w-2.5 h-2.5 rounded-full bg-emerald-500/80" />
-                            </div>
-                            <span className="text-slate-400 font-mono text-[11px] ml-2 hidden sm:inline">
-                              {project.id === 'orbit' ? 'https://orbit.galvanek.de/call-center' : 'https://atlas.galvanek-bau.de/dashboard'}
-                            </span>
+                  {isClientProject ? (
+                    <div 
+                      onClick={() => setActiveModalProject(project)}
+                      className="cursor-pointer group/frame overflow-hidden rounded-2xl border border-slate-800 bg-slate-950 shadow-xl transition-all duration-300 hover:shadow-2xl hover:border-blue-500/50"
+                    >
+                      {/* macOS Window Top Bar */}
+                      <div className="bg-slate-900/90 px-4 py-2.5 border-b border-slate-800 flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <div className="flex gap-1.5">
+                            <div className="w-2.5 h-2.5 rounded-full bg-rose-500/80" />
+                            <div className="w-2.5 h-2.5 rounded-full bg-amber-500/80" />
+                            <div className="w-2.5 h-2.5 rounded-full bg-emerald-500/80" />
                           </div>
-
-                          {/* Switcher: Live Screenshot vs Interactive UI */}
-                          <div className="flex items-center gap-1 bg-slate-950 p-1 rounded-lg border border-slate-800">
-                            <button
-                              onClick={() => toggleView(project.id, 'screenshot')}
-                              className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-[11px] font-semibold transition-all cursor-pointer ${
-                                currentView === 'screenshot'
-                                  ? 'bg-blue-600 text-white shadow'
-                                  : 'text-slate-400 hover:text-white'
-                              }`}
-                            >
-                              <Camera className="w-3 h-3" />
-                              <span>Live UI</span>
-                            </button>
-                            <button
-                              onClick={() => toggleView(project.id, 'interactive')}
-                              className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-[11px] font-semibold transition-all cursor-pointer ${
-                                currentView === 'interactive'
-                                  ? 'bg-blue-600 text-white shadow'
-                                  : 'text-slate-400 hover:text-white'
-                              }`}
-                            >
-                              <Cpu className="w-3 h-3" />
-                              <span>Simulation</span>
-                            </button>
-                          </div>
+                          <span className="text-slate-400 font-mono text-[11px] ml-2">
+                            {project.id === 'orbit' ? 'orbit.galvanek.de/call-center-v2' : 'atlas.galvanek-bau.de/dashboard'}
+                          </span>
                         </div>
+                        <span className="text-[10px] text-emerald-400 font-mono font-medium flex items-center gap-1">
+                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" /> Live UI
+                        </span>
+                      </div>
 
-                        {/* View Content */}
-                        <div className="relative">
-                          {currentView === 'screenshot' && project.imageUrl ? (
-                            <div 
-                              onClick={() => setActiveModalProject(project)}
-                              className="relative cursor-pointer group/screenshot overflow-hidden bg-slate-950 flex items-center justify-center p-2"
-                            >
-                              <img
-                                src={project.imageUrl}
-                                alt={`${project.title} Production Interface`}
-                                className="w-full h-auto object-cover rounded-xl transition-transform duration-500 group-hover/screenshot:scale-[1.01]"
-                              />
-                              <div className="absolute inset-0 bg-slate-950/20 opacity-0 group-hover/screenshot:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                                <span className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-900/90 text-white text-xs font-semibold backdrop-blur-md shadow-lg border border-white/20">
-                                  <Maximize2 className="w-3.5 h-3.5" /> Click to Enlarge & View Specs
-                                </span>
-                              </div>
-                            </div>
-                          ) : (
-                            <div className="p-2 sm:p-3">
-                              {project.mockupType === 'orbit' || project.mockupType === 'atlas' ? (
-                                <ProjectMockup type={project.mockupType} />
-                              ) : null}
-                            </div>
-                          )}
+                      {/* Screenshot Container with Click to Enlarge Overlay */}
+                      <div className="relative overflow-hidden bg-slate-950">
+                        <img
+                          src={project.imageUrl}
+                          alt={`${project.title} Production Interface`}
+                          className="w-full h-auto object-cover max-h-[360px] transition-transform duration-500 group-hover/frame:scale-[1.01]"
+                        />
+                        <div className="absolute inset-0 bg-slate-950/20 opacity-0 group-hover/frame:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                          <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-slate-900/95 text-white text-xs font-semibold backdrop-blur-md shadow-lg border border-white/20">
+                            <Maximize2 className="w-3.5 h-3.5" /> Enlarge Screenshot & Specs
+                          </span>
                         </div>
                       </div>
-                    ) : (
+                    </div>
+                  ) : (
+                    <div className="rounded-2xl border border-border-custom bg-slate-50 p-6 flex items-center justify-center">
                       <img
                         src={project.imageUrl}
                         alt={project.title}
-                        className="w-full h-auto max-h-[380px] object-contain transition-transform duration-700 group-hover:scale-[1.02] drop-shadow-2xl mx-auto"
+                        className="w-full h-auto max-h-[300px] object-contain drop-shadow-md mx-auto"
                       />
-                    )}
-                  </motion.div>
+                    </div>
+                  )}
                 </div>
 
                 {/* Content Details Box */}
-                <div className={`lg:col-span-5 flex flex-col gap-4 ${isEven ? 'lg:order-2' : 'lg:order-1'}`}>
-                  {/* Category & Client Header Badges */}
+                <div className={`lg:col-span-5 flex flex-col gap-3.5 ${isEven ? 'lg:order-2' : 'lg:order-1'}`}>
+                  {/* Badges: Company & Client */}
                   <div className="flex flex-wrap items-center gap-2">
                     {isClientProject ? (
                       <>
-                        <span className="inline-flex items-center gap-1.5 text-xs font-bold tracking-wider uppercase px-3 py-1 rounded-full bg-blue-100 text-blue-800 border border-blue-200">
-                          <Building2 className="w-3.5 h-3.5 text-blue-600" />
+                        <div className="h-6 px-2 bg-slate-950 rounded-md border border-slate-800 flex items-center justify-center">
+                          <img src={automateLogo} alt="AutoMATE Solutions" className="h-3 w-auto object-contain" />
+                        </div>
+                        <span className="inline-flex items-center gap-1 text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-700 border border-blue-200">
+                          <Building2 className="w-3 h-3 text-blue-600" />
                           Client: {project.clientName}
                         </span>
-                        <span className="inline-flex items-center gap-1 text-xs font-semibold px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">
-                          <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                        <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">
                           In Production
                         </span>
                       </>
                     ) : (
-                      <span className="text-xs font-bold tracking-wider uppercase px-3 py-1 rounded-full bg-slate-100 text-text-secondary border border-slate-200">
+                      <span className="text-[11px] font-semibold px-2.5 py-0.5 rounded-full bg-slate-100 text-text-secondary border border-slate-200">
                         {isMobileApp ? 'Personal Mobile App' : 'Personal Web App'}
                       </span>
                     )}
                   </div>
 
                   <div>
-                    <h3 className="text-2xl sm:text-3xl font-extrabold text-text-primary group-hover:text-primary transition-colors duration-300 leading-tight">
+                    <h3 className="text-xl sm:text-2xl font-extrabold text-text-primary leading-tight">
                       {project.title}
                     </h3>
                     {project.subtitle && (
-                      <p className="text-sm font-semibold text-text-secondary mt-1">
+                      <p className="text-xs font-semibold text-text-secondary mt-0.5">
                         {project.subtitle}
                       </p>
                     )}
                   </div>
 
-                  <p className="text-text-secondary text-sm sm:text-base leading-relaxed">
+                  <p className="text-text-secondary text-xs sm:text-sm leading-relaxed">
                     {project.description}
                   </p>
 
-                  {/* Operational Metrics (for Client Projects) */}
-                  {project.metrics && project.metrics.length > 0 && (
-                    <div className="grid grid-cols-3 gap-2 py-2">
+                  {/* Clean 3-Metric Strip */}
+                  {project.metrics && (
+                    <div className="grid grid-cols-3 gap-2 py-1">
                       {project.metrics.map((metric, idx) => (
-                        <div key={idx} className="bg-slate-50 rounded-xl p-2.5 border border-slate-100 flex flex-col">
-                          <span className="text-[11px] text-text-muted">{metric.label}</span>
-                          <span className="text-xs sm:text-sm font-bold text-text-primary mt-0.5">{metric.value}</span>
+                        <div key={idx} className="bg-slate-50 rounded-xl p-2 border border-slate-100 flex flex-col">
+                          <span className="text-[10px] text-text-muted">{metric.label}</span>
+                          <span className="text-xs font-bold text-text-primary mt-0.5">{metric.value}</span>
                         </div>
                       ))}
                     </div>
                   )}
 
-                  {/* Highlights Bullet Points */}
-                  {project.highlights && project.highlights.length > 0 && (
-                    <div className="space-y-1.5 mt-1">
+                  {/* Highlights (2 bullets max to prevent vertical bloating) */}
+                  {project.highlights && (
+                    <div className="space-y-1 mt-0.5">
                       {project.highlights.slice(0, 2).map((highlight, idx) => (
-                        <div key={idx} className="flex items-start gap-2 text-xs text-text-secondary">
+                        <div key={idx} className="flex items-start gap-1.5 text-xs text-text-secondary">
                           <CheckCircle2 className="w-3.5 h-3.5 text-primary shrink-0 mt-0.5" />
                           <span className="leading-snug">{highlight}</span>
                         </div>
@@ -429,36 +375,35 @@ export const Projects: React.FC = () => {
                   )}
 
                   {/* Tech stack badging */}
-                  <div className="flex flex-wrap gap-1.5 mt-2">
+                  <div className="flex flex-wrap gap-1 mt-1">
                     {project.technologies.slice(0, 6).map((tech, idx) => (
                       <span
                         key={idx}
-                        className="inline-flex items-center gap-1 text-[11px] font-semibold px-2.5 py-1 rounded-lg bg-white border border-border-custom text-text-secondary shadow-2xs transition-colors duration-200"
+                        className="inline-flex items-center gap-1 text-[10px] font-semibold px-2 py-0.5 rounded-md bg-slate-50 border border-slate-200/80 text-text-secondary"
                       >
                         {getTechIcon(tech)}
                         <span>{tech}</span>
                       </span>
                     ))}
                     {project.technologies.length > 6 && (
-                      <span className="text-[11px] font-medium px-2 py-1 rounded-lg bg-slate-100 text-text-muted">
-                        +{project.technologies.length - 6} more
+                      <span className="text-[10px] font-medium px-1.5 py-0.5 rounded-md bg-slate-100 text-text-muted">
+                        +{project.technologies.length - 6}
                       </span>
                     )}
                   </div>
 
-                  {/* Action CTA Buttons */}
-                  <div className="flex flex-wrap items-center gap-3 mt-3 pt-4 border-t border-slate-100">
+                  {/* Action Buttons */}
+                  <div className="flex flex-wrap items-center gap-2.5 mt-2 pt-3 border-t border-slate-100">
                     {isClientProject ? (
                       <>
                         <button
                           onClick={() => setActiveModalProject(project)}
-                          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-primary text-white text-xs sm:text-sm font-semibold hover:bg-blue-600 transition-all duration-300 shadow-md shadow-blue-500/20 cursor-pointer"
+                          className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-primary text-white text-xs font-semibold hover:bg-blue-600 transition-all shadow-xs cursor-pointer"
                         >
-                          Deep-Dive Architecture & Specs <ArrowRight className="w-4 h-4" />
+                          Deep-Dive Architecture & Specs <ArrowRight className="w-3.5 h-3.5" />
                         </button>
-                        <span className="inline-flex items-center gap-1.5 text-xs text-text-muted font-medium bg-slate-100 px-3 py-1.5 rounded-lg border border-slate-200">
-                          <Lock className="w-3.5 h-3.5 text-amber-600" />
-                          Commercial Client Software (NDA)
+                        <span className="inline-flex items-center gap-1 text-[11px] text-text-muted bg-slate-50 px-2.5 py-1 rounded-lg border border-slate-200/60">
+                          <Lock className="w-3 h-3 text-amber-600" /> Commercial NDA
                         </span>
                       </>
                     ) : (
@@ -468,15 +413,15 @@ export const Projects: React.FC = () => {
                             href={project.liveUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-primary text-white text-xs sm:text-sm font-semibold hover:bg-blue-600 transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/25"
+                            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-primary text-white text-xs font-semibold hover:bg-blue-600 transition-all shadow-xs"
                           >
                             {project.liveUrl.includes('youtu') ? (
                               <>
-                                <Youtube className="w-4 h-4" /> Video Demo
+                                <Youtube className="w-3.5 h-3.5" /> Video Demo
                               </>
                             ) : (
                               <>
-                                <ExternalLink className="w-4 h-4" /> Live Website
+                                <ExternalLink className="w-3.5 h-3.5" /> Live Site
                               </>
                             )}
                           </a>
@@ -486,9 +431,9 @@ export const Projects: React.FC = () => {
                             href={project.githubUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border border-border-custom bg-white text-text-primary text-xs sm:text-sm font-semibold hover:bg-slate-50 transition-colors duration-300 shadow-sm"
+                            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl border border-border-custom bg-white text-text-primary text-xs font-semibold hover:bg-slate-50 transition-colors shadow-2xs"
                           >
-                            <Github className="w-4 h-4" /> GitHub
+                            <Github className="w-3.5 h-3.5" /> GitHub
                           </a>
                         )}
                       </>
