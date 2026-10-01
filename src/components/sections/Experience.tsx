@@ -71,7 +71,7 @@ export const Experience: React.FC = () => {
               </div>
             </div>
 
-            {/* Compact 2-Column Client Engagements */}
+              {/* Compact 2-Column Client Engagements */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
               {/* Project 1: Orbit */}
               <div className="p-4 rounded-2xl bg-slate-50/80 border border-slate-100 flex flex-col justify-between gap-3">
@@ -79,32 +79,32 @@ export const Experience: React.FC = () => {
                   <div className="flex items-center justify-between gap-1 mb-2">
                     <span className="text-xs font-bold text-text-primary flex items-center gap-1.5">
                       <span className="w-2 h-2 rounded-full bg-blue-600" />
-                      O.R.B.I.T (Sales OS)
+                      ORBIT | Enterprise Sales OS
                     </span>
                     <span className="text-[10px] font-semibold px-2 py-0.5 rounded bg-blue-50 text-blue-700 border border-blue-200/60">
-                      Client: Galvanek (DE)
+                      Galvanek Bau GmbH (DE)
                     </span>
                   </div>
                   <p className="text-xs text-text-secondary leading-relaxed mb-3">
-                    Sales scheduling simulation & Call Center V2 platform for field sales operations across Germany.
+                    Shipped 180+ roadmap tasks across Call Center V2, Multi-Calendar Scheduling (Berlin CET), and Payroll/Commissions.
                   </p>
                   <ul className="space-y-1.5 text-xs text-text-secondary">
                     <li className="flex items-start gap-1.5">
                       <CheckCircle2 className="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5" />
-                      <span>Owned Schedule Simulation engine & multi-resource Berlin-timezone calendar.</span>
+                      <span><strong>Real-time Pusher Sync:</strong> Custom promise wrappers & timeout guards eliminating websocket race conditions.</span>
                     </li>
                     <li className="flex items-start gap-1.5">
                       <CheckCircle2 className="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5" />
-                      <span>Built real-time Pusher WebSockets sync and Leaflet route polylines.</span>
+                      <span><strong>Automated Testing:</strong> 4,900+ Bun unit tests (80.5% coverage floor) and 78 Playwright E2E test suites with CI worker scaling.</span>
                     </li>
                     <li className="flex items-start gap-1.5">
                       <CheckCircle2 className="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5" />
-                      <span>Engineered automated E2E test suites using Playwright & Bun test.</span>
+                      <span><strong>Booking Guardrails:</strong> Distance-week warnings & conflict gates eliminating double-booking incidents.</span>
                     </li>
                   </ul>
                 </div>
                 <div className="flex flex-wrap gap-1 pt-2 border-t border-slate-200/60 text-[10px]">
-                  {['React 18', 'TypeScript', 'Pusher', 'Leaflet', 'Recharts', 'Playwright'].map((t, i) => (
+                  {['React 19', 'TypeScript', 'Pusher', 'Playwright (78 suites)', 'Bun (4.9k tests)'].map((t, i) => (
                     <span key={i} className="px-1.5 py-0.5 bg-white rounded border border-slate-200 text-slate-700">
                       {t}
                     </span>
@@ -118,32 +118,32 @@ export const Experience: React.FC = () => {
                   <div className="flex items-center justify-between gap-1 mb-2">
                     <span className="text-xs font-bold text-text-primary flex items-center gap-1.5">
                       <span className="w-2 h-2 rounded-full bg-[#FF6933]" />
-                      Galvanek Atlas (Montago)
+                      ATLAS | Construction Management
                     </span>
                     <span className="text-[10px] font-semibold px-2 py-0.5 rounded bg-orange-50 text-orange-800 border border-orange-200/60">
-                      Client: Galvanek-Bau (DE)
+                      Galvanek Bau GmbH (DE)
                     </span>
                   </div>
                   <p className="text-xs text-text-secondary leading-relaxed mb-3">
-                    Construction management ERP supporting Platform Admin, PMs, Owners, and Subcontractor Vendors.
+                    German field engineering ERP for project, vendor, construction-site, and protocol management.
                   </p>
                   <ul className="space-y-1.5 text-xs text-text-secondary">
                     <li className="flex items-start gap-1.5">
                       <CheckCircle2 className="w-3.5 h-3.5 text-orange-600 shrink-0 mt-0.5" />
-                      <span>Built drag-and-drop Kanban (@dnd-kit) and interactive Gantt charts.</span>
+                      <span><strong>5-Role RBAC Matrix:</strong> Architected matrix across Admin, Project Lead, Site Supervisor, Vendor, and Auditor (100% route security).</span>
                     </li>
                     <li className="flex items-start gap-1.5">
                       <CheckCircle2 className="w-3.5 h-3.5 text-orange-600 shrink-0 mt-0.5" />
-                      <span>Developed architectural blueprint defect markup tool using Konva canvas.</span>
+                      <span><strong>Bautagebuch & Blueprints:</strong> Digital construction logs & Konva canvas defect markup for paperless site protocols.</span>
                     </li>
                     <li className="flex items-start gap-1.5">
                       <CheckCircle2 className="w-3.5 h-3.5 text-orange-600 shrink-0 mt-0.5" />
-                      <span>Integrated Germany postcode (PLZ) vendor matching and JWT RBAC guards.</span>
+                      <span><strong>Role-based E2E Gates:</strong> Playwright test suites validating permission boundaries & preventing privilege escalation.</span>
                     </li>
                   </ul>
                 </div>
                 <div className="flex flex-wrap gap-1 pt-2 border-t border-slate-200/60 text-[10px]">
-                  {['React 18', 'TypeScript', 'AntD 5', 'Konva', 'Gantt', '@dnd-kit'].map((t, i) => (
+                  {['React', 'TypeScript', 'RBAC (5 Roles)', 'Konva', 'Playwright E2E'].map((t, i) => (
                     <span key={i} className="px-1.5 py-0.5 bg-white rounded border border-slate-200 text-slate-700">
                       {t}
                     </span>

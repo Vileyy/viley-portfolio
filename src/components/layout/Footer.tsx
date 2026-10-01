@@ -32,7 +32,7 @@ export const Footer: React.FC = () => {
               VILEY<span className="text-primary">.</span>
             </span>
             <p className="text-text-secondary text-sm max-w-sm leading-relaxed mx-auto md:mx-0">
-              Junior Front-End Engineer focused on building responsive, pixel-perfect, and modern web & mobile experiences.
+              Frontend Software Engineer with production experience building enterprise web applications in React and TypeScript for German clients.
             </p>
           </div>
 
